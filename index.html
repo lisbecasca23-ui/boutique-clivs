@@ -405,6 +405,39 @@ body {
 .wa-btn:hover { background: var(--moss-lt); }
 .wa-btn.sold  { background: var(--fg-muted); pointer-events: none; opacity: .6; }
 
+/* ── RESPONSIVE MÓVIL ───────────────────── */
+@media (max-width: 600px) {
+  .header-inner {
+    padding-block: 10px;
+    gap: 8px;
+  }
+  .logo-name { font-size: 1.15rem; }
+  .header-wa span { display: none; }
+  .header-wa { padding: 9px 13px; }
+
+  .hero { padding: 36px 0 30px; }
+
+  .filter-bar {
+    top: calc(env(safe-area-inset-top, 0px) + 62px);
+  }
+
+  .catalog-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .card-body { padding: 10px 10px 12px; }
+  .card-name { font-size: .95rem; }
+  .card-price { font-size: 1.1rem; }
+  .wa-btn { padding: 6px 9px; font-size: .68rem; }
+}
+
+@media (max-width: 380px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── LOADER ──────────────────────────────── */
 .loader-wrap {
   grid-column: 1/-1;
