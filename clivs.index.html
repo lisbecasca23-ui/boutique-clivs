@@ -1,0 +1,932 @@
+<title>Cliv's Boutique</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap">
+
+<style>
+/* ── Layout: editorial boutique grid · soft rose + moss palette ── */
+:root {
+  --rose:       #F5D6DC;
+  --rose-mid:   #E8B4BE;
+  --moss:       #5C6B3A;
+  --moss-lt:    #8FA260;
+  --cream:      #FDF8F5;
+  --surface:    #FFFFFF;
+  --fg:         #2A2420;
+  --fg-muted:   #7A6D68;
+  --border:     rgba(92,107,58,.14);
+  --shadow:     rgba(92,107,58,.10);
+  --wa-green:   #25D366;
+
+  --font-disp: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Jost', system-ui, -apple-system, sans-serif;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --rose:     #3D1E24;
+    --rose-mid: #5A2E38;
+    --moss:     #8FA260;
+    --moss-lt:  #B5C98A;
+    --cream:    #1A1714;
+    --surface:  #232120;
+    --fg:       #EFE9E5;
+    --fg-muted: #A89D97;
+    --border:   rgba(143,162,96,.18);
+    --shadow:   rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --rose:     #3D1E24;
+  --rose-mid: #5A2E38;
+  --moss:     #8FA260;
+  --moss-lt:  #B5C98A;
+  --cream:    #1A1714;
+  --surface:  #232120;
+  --fg:       #EFE9E5;
+  --fg-muted: #A89D97;
+  --border:   rgba(143,162,96,.18);
+  --shadow:   rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  padding-left:  max(16px, env(safe-area-inset-left,  0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+
+/* ── HEADER ──────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-mark {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+
+.logo-name {
+  font-family: var(--font-disp);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--moss);
+  letter-spacing: .02em;
+  line-height: 1;
+}
+
+.logo-sub {
+  font-size: .6rem;
+  font-weight: 400;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  line-height: 1;
+}
+
+.header-wa {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--moss);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  padding: 9px 18px;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.header-wa:hover { background: var(--moss-lt); }
+
+/* ── HERO ──────────────────────────────────── */
+.hero {
+  background: var(--rose);
+  padding: 56px 0 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(92,107,58,.14) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--moss-lt);
+}
+
+.hero-title {
+  font-family: var(--font-disp);
+  font-size: clamp(2.2rem, 6.5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.18;
+  color: var(--fg);
+  text-wrap: balance;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+.hero-title span { color: var(--moss); }
+
+.hero-desc {
+  font-size: .9rem;
+  font-weight: 300;
+  color: var(--fg-muted);
+  letter-spacing: .04em;
+}
+
+/* ── FILTER BAR ───────────────────────────── */
+.filter-bar {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 70px);
+  z-index: 90;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0;
+}
+
+.filter-scroll {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.filter-scroll::-webkit-scrollbar { display: none; }
+
+.filter-btn {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  font-weight: 400;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: all .18s;
+  white-space: nowrap;
+  letter-spacing: .03em;
+}
+.filter-btn:hover { border-color: var(--moss); color: var(--moss); }
+.filter-btn.active { background: var(--moss); border-color: var(--moss); color: #fff; font-weight: 500; }
+
+/* ── CATALOG ─────────────────────────────── */
+.catalog {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 0 80px;
+}
+
+.catalog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalog-title {
+  font-family: var(--font-disp);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--fg);
+  font-style: italic;
+}
+
+.catalog-count {
+  font-size: .78rem;
+  color: var(--fg-muted);
+  letter-spacing: .05em;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+/* ── PRODUCT CARD ────────────────────────── */
+.product-card {
+  background: var(--surface);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform .22s ease, box-shadow .22s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 38px var(--shadow);
+}
+
+.card-img {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--rose);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+  display: block;
+}
+
+.product-card:hover .card-img img { transform: scale(1.05); }
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 50px;
+}
+
+.badge-avail { background: var(--moss); color: #fff; }
+.badge-sold  { background: rgba(0,0,0,.45); color: #fff; }
+
+.card-body {
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.card-cat {
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--moss-lt);
+}
+
+.card-name {
+  font-family: var(--font-disp);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--fg);
+  line-height: 1.3;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  font-size: .67rem;
+  border-radius: 5px;
+  padding: 2px 8px;
+  color: var(--fg-muted);
+}
+
+.tag-talla { border: 1px solid var(--border); }
+.tag-color { background: var(--rose); }
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.card-price {
+  font-family: var(--font-disp);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--moss);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.card-price.consultar {
+  font-size: 1rem;
+  color: var(--fg-muted);
+}
+
+.wa-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--moss);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 9px;
+  padding: 7px 12px;
+  font-size: .73rem;
+  font-weight: 500;
+  transition: background .18s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.wa-btn:hover { background: var(--moss-lt); }
+.wa-btn.sold  { background: var(--fg-muted); pointer-events: none; opacity: .6; }
+
+/* ── LOADER ──────────────────────────────── */
+.loader-wrap {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 16px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--moss);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loader-wrap p {
+  font-size: .82rem;
+  color: var(--fg-muted);
+  letter-spacing: .05em;
+}
+
+/* ── EMPTY STATE ─────────────────────────── */
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 72px 24px;
+  color: var(--fg-muted);
+}
+
+.empty-state h3 {
+  font-family: var(--font-disp);
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--fg);
+  margin: 14px 0 8px;
+  font-style: italic;
+}
+
+.empty-state p { font-size: .88rem; }
+
+.empty-state .wa-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--moss);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-size: .82rem;
+  font-weight: 500;
+  margin-top: 20px;
+  transition: background .2s;
+}
+.empty-state .wa-inline:hover { background: var(--moss-lt); }
+
+/* ── INFO STRIP ───────────────────────────── */
+.info-strip {
+  background: var(--rose);
+  padding: 36px 0;
+}
+
+.info-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.info-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--surface);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--moss);
+}
+
+.info-label {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.info-sub {
+  font-size: .75rem;
+  color: var(--fg-muted);
+  line-height: 1.3;
+}
+
+/* ── FLOAT WHATSAPP ───────────────────────── */
+.wa-float {
+  position: fixed;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  right:   max(24px, env(safe-area-inset-right,   0px));
+  z-index: 200;
+  width: 56px;
+  height: 56px;
+  background: var(--wa-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.18);
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(0,0,0,.24); }
+
+/* ── FOOTER ──────────────────────────────── */
+footer {
+  background: var(--moss);
+  color: rgba(255,255,255,.82);
+  padding: 36px 0;
+  text-align: center;
+  padding-left:  max(16px, env(safe-area-inset-left,  0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.footer-inner { max-width: 600px; margin: 0 auto; }
+
+.footer-logo {
+  font-family: var(--font-disp);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+  font-style: italic;
+  letter-spacing: .02em;
+  margin-bottom: 6px;
+}
+
+.footer-tagline {
+  font-size: .78rem;
+  font-weight: 300;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 20px;
+}
+
+.footer-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-size: .8rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  border: 1px solid rgba(255,255,255,.22);
+  transition: background .2s;
+  margin-bottom: 20px;
+}
+.footer-wa:hover { background: rgba(255,255,255,.22); }
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,.55);
+  text-decoration: none;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  transition: color .2s;
+}
+.footer-links a:hover { color: #fff; }
+
+.footer-copy { font-size: .68rem; color: rgba(255,255,255,.35); }
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width: 600px) {
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .card-body { padding: 10px 10px 12px; gap: 6px; }
+  .card-name { font-size: .95rem; }
+  .card-price { font-size: 1.1rem; }
+  .wa-btn { padding: 6px 10px; font-size: .68rem; }
+  .logo-sub { display: none; }
+  .header-wa .wa-label { display: none; }
+  .header-wa { padding: 9px 12px; }
+  .hero { padding: 38px 0 30px; }
+  .hero-title { font-size: 2rem; }
+  .info-inner { gap: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card { transition: none; }
+  .spinner { animation: none; opacity: .5; }
+}
+</style>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <!-- Logo SVG recreado del original -->
+      <svg class="logo-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="80" height="80" rx="18" fill="#F5D6DC"/>
+        <!-- C grande en verde musgo -->
+        <text x="7" y="64" font-family="Georgia,serif" font-size="66" font-weight="400" fill="#5C6B3A">C</text>
+        <!-- V superpuesta -->
+        <text x="31" y="66" font-family="Georgia,serif" font-size="46" font-weight="300" fill="#5C6B3A">V</text>
+        <!-- Estrella de 4 puntas blanca -->
+        <path d="M46 36 L47.6 43.4 L55 45 L47.6 46.6 L46 54 L44.4 46.6 L37 45 L44.4 43.4 Z" fill="white"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">Cliv's Boutique</span>
+        <span class="logo-sub">Ropa &amp; Accesorios</span>
+      </div>
+    </a>
+    <a href="https://wa.me/50683010338?text=Hola!%20Vi%20su%20catálogo%20y%20me%20gustaría%20más%20información." target="_blank" class="header-wa">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span class="wa-label">WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Cliv's Boutique</div>
+    <h1 class="hero-title">Estamos para <span>cada versión</span> de ti</h1>
+    <p class="hero-desc">Tienda online · Envíos a todo el país · Entregas en Puntarenas</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-scroll" id="filter-bar"></div>
+</div>
+
+<!-- CATALOG -->
+<main class="catalog">
+  <div class="catalog-top">
+    <h2 class="catalog-title">Catálogo</h2>
+    <span class="catalog-count" id="catalog-count"></span>
+  </div>
+  <div class="catalog-grid" id="catalog-grid">
+    <div class="loader-wrap">
+      <div class="spinner"></div>
+      <p>Cargando catálogo...</p>
+    </div>
+  </div>
+</main>
+
+<!-- INFO STRIP -->
+<section class="info-strip">
+  <div class="info-inner">
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <span class="info-label">Envíos</span>
+      <span class="info-sub">A todo el país<br>por paquetería</span>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <span class="info-label">Entregas</span>
+      <span class="info-sub">Personales en<br>Puntarenas</span>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15z"/></svg>
+      </div>
+      <span class="info-label">Contacto</span>
+      <span class="info-sub">WhatsApp &amp;<br>Instagram</span>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <span class="info-label">Para vos</span>
+      <span class="info-sub">Ropa y accesorios<br>con mucho amor</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Cliv's Boutique</div>
+    <div class="footer-tagline">Ropa &amp; Accesorios · Puntarenas, Costa Rica</div>
+
+    <a href="https://wa.me/50683010338?text=Hola!%20Vi%20el%20catálogo%20en%20línea%20y%20me%20gustaría%20más%20información." target="_blank" class="footer-wa">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      +506 8301-0338
+    </a>
+
+    <div class="footer-links">
+      <a href="https://www.instagram.com/clivs.boutique" target="_blank">Instagram: @clivs.boutique</a>
+    </div>
+    <div class="footer-copy">© 2026 Cliv's Boutique · Hecho con 🤍 en Puntarenas</div>
+  </div>
+</footer>
+
+<!-- FLOAT WHATSAPP -->
+<a href="https://wa.me/50683010338?text=Hola!%20Vi%20el%20catálogo%20en%20línea%20y%20me%20gustaría%20más%20información." target="_blank" class="wa-float" aria-label="Contactar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const NOTION_TOKEN  = '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';
+const DATABASE_ID   = '3f9e9aaa2ab3806aa047dfa4af0c60b0';
+const WA_NUMBER     = '50683010338';
+const NOTION_URL    = `https://api.notion.com/v1/databases/${DATABASE_ID}/query`;
+const PROXY         = 'https://corsproxy.io/?';
+
+const CATEGORIES = ['Todos','Tops','Faldas','Camisas','Vestidos','Palazos','Shorts','Pijamas','Batas'];
+
+let allProducts  = [];
+let activeFilter = 'Todos';
+
+/* ── Fetch desde Notion via proxy CORS ── */
+async function fetchProducts() {
+  const grid  = document.getElementById('catalog-grid');
+  const count = document.getElementById('catalog-count');
+
+  grid.innerHTML = `<div class="loader-wrap"><div class="spinner"></div><p>Cargando catálogo...</p></div>`;
+
+  try {
+    const res = await fetch(PROXY + encodeURIComponent(NOTION_URL), {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${NOTION_TOKEN}`,
+        'Notion-Version': '2022-06-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ page_size: 100 })
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const data = await res.json();
+    allProducts = (data.results || []).map(parseProduct).filter(Boolean);
+    renderProducts();
+
+  } catch (err) {
+    console.error('Notion fetch error:', err);
+    grid.innerHTML = `
+      <div class="empty-state">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".35">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 001.97 1.61h9.72a2 2 0 001.97-1.61L23 6H6"/>
+        </svg>
+        <h3>Catálogo próximamente</h3>
+        <p>Estamos cargando nuestros productos.<br>Mientras tanto, escribinos por WhatsApp.</p>
+        <a href="https://wa.me/${WA_NUMBER}?text=Hola!%20Quiero%20ver%20el%20catálogo%20disponible." target="_blank" class="wa-inline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Ver catálogo por WhatsApp
+        </a>
+      </div>`;
+    count.textContent = '';
+  }
+}
+
+/* ── Parsear página de Notion ── */
+function parseProduct(page) {
+  try {
+    const p = page.properties;
+
+    const nombre     = p.Nombre?.title?.[0]?.plain_text || 'Artículo';
+    const precio     = p.Precio?.number ?? null;
+    const categoria  = p['Categoría']?.select?.name || p['Categoria']?.select?.name || '';
+    const tallas     = p.Talla?.multi_select?.map(t => t.name) || [];
+    const color      = p.Color?.select?.name || '';
+    const disponible = p.Disponible?.checkbox ?? true;
+
+    let foto = null;
+    const files = p.Foto?.files || [];
+    if (files.length > 0) {
+      const f = files[0];
+      foto = f.type === 'external' ? f.external?.url : f.file?.url;
+    }
+
+    return { id: page.id, nombre, precio, categoria, tallas, color, disponible, foto };
+  } catch { return null; }
+}
+
+/* ── Formatear precio (si es <= 1000 asumimos USD, si no CRC) ── */
+function fmtPrice(precio) {
+  if (precio === null || precio === undefined) return null;
+  if (precio >= 1000) return '₡' + precio.toLocaleString('es-CR');
+  return '$' + precio.toLocaleString('en-US', { minimumFractionDigits: 0 });
+}
+
+/* ── Placeholder SVG cuando no hay foto ── */
+function placeholder(cat) {
+  const icons = {
+    'Tops':    'M4 7c0-1.1.9-2 2-2h12a2 2 0 012 2v1l-3 2v9H7V10L4 8V7z',
+    'Vestidos':'M8 2l-4 6h3v14h10V8h3L16 2H8z',
+    'Faldas':  'M6 8h12l-2 14H8L6 8zM4 5h16v3H4z',
+    'Camisas': 'M4 7c0-1.1.9-2 2-2h12a2 2 0 012 2v1l-3 2v9H7V10L4 8V7z',
+    'Palazos': 'M8 2v20M16 2v20M4 10h16',
+    'Shorts':  'M4 4h16v8c0 3-2 4-4 4H8c-2 0-4-1-4-4V4z',
+    'Pijamas': 'M4 8h16v12a2 2 0 01-2 2H6a2 2 0 01-2-2V8zM4 4h16v4H4z',
+    'Batas':   'M12 2L4 6v16h16V6L12 2zM8 12h8',
+  };
+  const d = icons[cat] || 'M4 7c0-1.1.9-2 2-2h12a2 2 0 012 2v1l-3 2v9H7V10L4 8V7z';
+  return `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400">
+      <rect width="300" height="400" fill="%23F5D6DC"/>
+      <rect x="100" y="140" width="100" height="120" rx="8" fill="%23E8B4BE"/>
+      <svg x="125" y="165" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="%235C6B3A" stroke-width="1.5">
+        <path d="${d}"/>
+      </svg>
+      <text x="150" y="310" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="%235C6B3A" opacity=".7">${cat || 'Cliv\'s Boutique'}</text>
+    </svg>`
+  )}`;
+}
+
+/* ── Render tarjetas ── */
+function renderProducts() {
+  const grid  = document.getElementById('catalog-grid');
+  const count = document.getElementById('catalog-count');
+
+  const filtered = activeFilter === 'Todos'
+    ? allProducts
+    : allProducts.filter(p => p.categoria === activeFilter);
+
+  count.textContent = `${filtered.length} ${filtered.length === 1 ? 'artículo' : 'artículos'}`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".3"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <h3>Sin artículos aquí</h3>
+        <p>No hay productos en esta categoría por el momento.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(prod => {
+    const imgSrc = prod.foto || placeholder(prod.categoria);
+    const precio = fmtPrice(prod.precio);
+    const msg    = encodeURIComponent(
+      `Hola! Me interesa: *${prod.nombre}*${prod.categoria ? ' — ' + prod.categoria : ''}. ¿Está disponible?`
+    );
+    const waLink = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+
+    return `
+    <div class="product-card">
+      <div class="card-img">
+        <img
+          src="${imgSrc}"
+          alt="${prod.nombre}"
+          loading="lazy"
+          onerror="this.src='${placeholder(prod.categoria)}'">
+        <span class="badge ${prod.disponible ? 'badge-avail' : 'badge-sold'}">
+          ${prod.disponible ? 'Disponible' : 'Agotado'}
+        </span>
+      </div>
+      <div class="card-body">
+        ${prod.categoria ? `<div class="card-cat">${prod.categoria}</div>` : ''}
+        <div class="card-name">${prod.nombre}</div>
+        <div class="card-tags">
+          ${prod.tallas.map(t => `<span class="tag tag-talla">${t}</span>`).join('')}
+          ${prod.color ? `<span class="tag tag-color">${prod.color}</span>` : ''}
+        </div>
+        <div class="card-footer">
+          ${precio
+            ? `<span class="card-price">${precio}</span>`
+            : `<span class="card-price consultar">Consultar</span>`}
+          <a href="${waLink}" target="_blank"
+             class="wa-btn ${prod.disponible ? '' : 'sold'}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            ${prod.disponible ? 'Consultar' : 'Agotado'}
+          </a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ── Setup filtros ── */
+function setupFilters() {
+  const bar = document.getElementById('filter-bar');
+  CATEGORIES.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (cat === 'Todos' ? ' active' : '');
+    btn.textContent = cat;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = cat;
+      renderProducts();
+    });
+    bar.appendChild(btn);
+  });
+}
+
+setupFilters();
+fetchProducts();
+</script>
