@@ -788,7 +788,7 @@ async function fetchProducts() {
   grid.innerHTML = `<div class="loader-wrap"><div class="spinner"></div><p>Cargando catálogo...</p></div>`;
 
   try {
-   const res = await fetch('https://corsproxy.io/?' + encodeURIComponent(NOTION_URL), {
+      const res = await fetch(PROXY + encodeURIComponent(NOTION_URL), {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${NOTION_TOKEN}`,
