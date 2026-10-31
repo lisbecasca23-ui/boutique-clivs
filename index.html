@@ -787,16 +787,11 @@ async function fetchProducts() {
 
   grid.innerHTML = `<div class="loader-wrap"><div class="spinner"></div><p>Cargando catálogo...</p></div>`;
 
-  try {
-      const res = await fetch(PROXY, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${NOTION_TOKEN}`,
-        'Notion-Version': '2022-06-28',
-        'Content-Type': 'application/json'
-      },
-     body: JSON.stringify({ database_id: DATABASE_ID, token: NOTION_TOKEN, page_size: 100 })
-    });
+  const res = await fetch('/api/notion', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' }
+});
+   
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
