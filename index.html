@@ -787,11 +787,10 @@ async function fetchProducts() {
 
   grid.innerHTML = `<div class="loader-wrap"><div class="spinner"></div><p>Cargando catálogo...</p></div>`;
 
-  const res = await fetch('/api/notion', {
+const res = await fetch('/api/notion', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' }
 });
-   
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
