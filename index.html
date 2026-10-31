@@ -822,7 +822,7 @@ async function fetchProducts() {
 function parseProduct(page) {
   try {
     const p = page.properties;
-
+    const orden      = p.Orden?.number ?? null;
     const nombre     = p.Nombre?.title?.[0]?.plain_text || 'Artículo';
     const precio     = p.Precio?.number ?? null;
     const categoria  = p['Categoría']?.select?.name || p['Categoria']?.select?.name || '';
@@ -837,7 +837,7 @@ function parseProduct(page) {
       foto = f.type === 'external' ? f.external?.url : f.file?.url;
     }
 
-    return { id: page.id, nombre, precio, categoria, tallas, color, disponible, foto };
+    return { id: page.id, orden, nombre, precio, categoria, tallas, color, disponible, foto };
   } catch { return null; }
 }
 
