@@ -651,7 +651,7 @@ footer {
   border-radius: 50px;
   padding: 8px 16px 8px 36px;
   font-family: var(--font-body);
-  font-size: .16px;
+  font-size: 16px;
   color: var(--fg);
   outline: none;
   transition: border-color .2s;
@@ -1189,13 +1189,13 @@ function renderProducts(searchQuery) {
   }
 
   let filtered = activeFilter === 'Todos'
-    ? allProducts
-    allProducts.filter(p => p.categoria.includes(activeFilter))
+   ? allProducts
+   : allProducts.filter(p => p.categoria.includes(activeFilter));
 
   if (searchQuery) {
     filtered = filtered.filter(p =>
       p.nombre.toLowerCase().includes(searchQuery) ||
-      p.categoria.toLowerCase().includes(searchQuery) ||
+      p.categoria.join(' ').toLowerCase().includes(searchQuery) ||
       (p.color || '').toLowerCase().includes(searchQuery)
     );
   }
