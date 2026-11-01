@@ -225,7 +225,7 @@ body {
 }
 
 .catalog-top {
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
@@ -637,10 +637,12 @@ footer {
 
 /* ── BARRA DE BÚSQUEDA ───────────────────── */
 .search-wrap {
-  flex: 1;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 100%;
   max-width: 340px;
-  min-width: 100px;
   position: relative;
+  margin: 12px 0;
 }
 .search-input {
   width: 100%;
@@ -649,7 +651,7 @@ footer {
   border-radius: 50px;
   padding: 8px 16px 8px 36px;
   font-family: var(--font-body);
-  font-size: .82rem;
+  font-size: .16px;
   color: var(--fg);
   outline: none;
   transition: border-color .2s;
@@ -1128,7 +1130,7 @@ function parseProduct(page) {
   
     const nombre     = p.Nombre?.title?.[0]?.plain_text || 'Artículo';
     const precio     = p.Precio?.number ?? null;
-    const categoria  = p['Categoría']?.select?.name || p['Categoria']?.select?.name || '';
+    const categoria = p['Categoría']?.multi_select?.map(t => t.name) || p['Categoria']?.multi_select?.map(t => t.name) || [];
     const tallas     = p.Tallas?.multi_select?.map(t => t.name) || [];
     const color      = p.Color?.select?.name || '';
     const disponible = p.Disponible?.checkbox ?? true;
@@ -1188,7 +1190,7 @@ function renderProducts(searchQuery) {
 
   let filtered = activeFilter === 'Todos'
     ? allProducts
-    : allProducts.filter(p => p.categoria === activeFilter);
+    allProducts.filter(p => p.categoria.includes(activeFilter))
 
   if (searchQuery) {
     filtered = filtered.filter(p =>
