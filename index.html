@@ -1362,11 +1362,23 @@ function renderCartPanel() {
 }
 
 /* ── Comprar ahora: WhatsApp ── */
+  /* — Comprar ahora: WhatsApp — */
+function buyNow() {
+  if (cart.length === 0) return;
+  const lines = cart.map(i => {
+    const p = i.precio ? fmtPrice(i.precio) : 'consultar precio';
+    const color = i.color ? ` | Color: ${i.color}` : '';
+    return `• ${i.nombre} (x${i.qty}) — ${p}${color}`;
+  });
+  const text = `Hola! Me gustaría comprar los siguientes artículos de Cliv's Boutique:\n\n${lines.join('\n')}\n\n¿Están disponibles?`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
+}
+  
   grid.innerHTML = filtered.map(prod => {
     const imgSrc = prod.foto || placeholder(prod.categoria);
     const precio = fmtPrice(prod.precio);
     const msg = encodeURIComponent(
-    `Hola! Me interesa: *${prod.nombre}*${prod.categoria ? ' — ' + prod.categoria : ''}${prod.orden ? ' (N.° ' + prod.orden + ')' : ''}. ¿Está disponible?`
+  `Hola! Me interesa: *${prod.nombre}*${prod.categoria.length ? ' — ' + prod.categoria.join(', ') : ''}...`
   );
 
 /* ── Modal de zoom de imagen ── */
