@@ -354,7 +354,7 @@ body {
 
 .card-price {
   font-family: var(--font-disp);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: var(--moss);
   font-variant-numeric: tabular-nums;
@@ -923,24 +923,13 @@ footer {
 </style>
 
 <!-- HEADER -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <!-- Logo SVG recreado del original -->
-      <svg class="logo-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="80" height="80" rx="18" fill="#F5D6DC"/>
-        <!-- C grande en verde musgo -->
-        <text x="7" y="64" font-family="Georgia,serif" font-size="66" font-weight="400" fill="#5C6B3A">C</text>
-        <!-- V superpuesta -->
-        <text x="31" y="66" font-family="Georgia,serif" font-size="46" font-weight="300" fill="#5C6B3A">V</text>
-        <!-- Estrella de 4 puntas blanca -->
-        <path d="M46 36 L47.6 43.4 L55 45 L47.6 46.6 L46 54 L44.4 46.6 L37 45 L44.4 43.4 Z" fill="white"/>
-      </svg>
-      <div class="logo-text">
-        <span class="logo-name">Cliv's Boutique</span>
-        <span class="logo-sub">Ropa &amp; Accesorios</span>
-      </div>
-    </a>
+<a href="#" class="logo">
+  <img src="logo.png" alt="Cliv's Boutique" style="height: 48px;">
+  <div class="logo-text">
+    <span class="logo-name">Cliv's Boutique</span>
+    <span class="logo-sub">Ropa &amp; Accesorios</span>
+  </div>
+</a>
   
     <!-- Carrito (derecha) -->
     <button class="cart-btn" id="cart-btn" onclick="openCart()">
@@ -972,8 +961,8 @@ footer {
 <main class="catalog">
   <div class="catalog-top">
     <h2 class="catalog-title">Catálogo</h2>
-    <span class="catalog-count" id="catalog-count"></span>
   </div>
+  
     <!-- Barra de búsqueda (centro) -->
     <div class="search-wrap">
       <input
@@ -983,7 +972,8 @@ footer {
         placeholder="Buscar productos..."
         autocomplete="off">
     </div>
-
+   <span class="catalog-count" id="catalog-count"></span>
+  
   <div class="catalog-grid" id="catalog-grid">
     <div class="loader-wrap">
       <div class="spinner"></div>
