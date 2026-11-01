@@ -45,8 +45,8 @@
 }
 
 :root[data-theme="dark"] {
-  --rose:     #3D1E24;
-  --rose-mid: #5A2E38;
+  --rose:     #F5D6DC;
+  --rose-mid: #E8B4BE;
   --moss:     #8FA260;
   --moss-lt:  #B5C98A;
   --cream:    #1A1714;
@@ -383,7 +383,7 @@ body {
 
 .card-price {
   font-family: var(--font-disp);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--moss);
   font-variant-numeric: tabular-nums;
@@ -1252,9 +1252,9 @@ function renderProducts(searchQuery) {
   grid.innerHTML = filtered.map(prod => {
     const imgSrc = prod.foto || placeholder(prod.categoria);
     const precio = fmtPrice(prod.precio);
-    const msg    = encodeURIComponent(
-      `Hola! Me interesa: *${prod.nombre}*${prod.categoria ? ' — ' + prod.categoria : ''}. ¿Está disponible?`
-    );
+    const msg = encodeURIComponent(
+    `Hola! Me interesa: *${prod.nombre}*${prod.categoria ? ' — ' + prod.categoria : ''}${prod.orden ? ' (N.° ' + prod.orden + ')' : ''}. ¿Está disponible?`
+  );
     const waLink = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     const safeId = prod.id.replace(/[^a-zA-Z0-9-]/g, '-');
 
@@ -1321,7 +1321,7 @@ function addToCart(id) {
   if (existing) {
     existing.qty += 1;
   } else {
-    cart.push({ id: prod.id, nombre: prod.nombre, precio: prod.precio, foto: prod.foto, qty: 1 });
+    cart.push({ id: prod.id, nombre: prod.nombre, precio: prod.precio, foto: prod.foto, color: prod.color, qty: 1 });
   }
   updateCartBadge();
   flashCartBtn();
@@ -1401,6 +1401,7 @@ function buyNow() {
   if (cart.length === 0) return;
   const lines = cart.map(i => {
     const p = i.precio ? fmtPrice(i.precio) : 'consultar precio';
+    const color = i.color ? ` | Color: ${i.color}` : '';
     return `• ${i.nombre} (x${i.qty}) — ${p}`;
   });
   const text = `Hola! Me gustaría comprar los siguientes artículos de Cliv's Boutique:\n\n${lines.join('\n')}\n\n¿Están disponibles?`;
