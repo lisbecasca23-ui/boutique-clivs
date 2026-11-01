@@ -28,35 +28,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --rose:     #3D1E24;
-    --rose-mid: #5A2E38;
-    --moss:     #8FA260;
-    --moss-lt:  #B5C98A;
-    --cream:    #1A1714;
-    --surface:  #232120;
-    --fg:       #EFE9E5;
-    --fg-muted: #A89D97;
-    --border:   rgba(143,162,96,.18);
-    --shadow:   rgba(0,0,0,.25);
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme="dark"] {
-  --rose:     #F5D6DC;
-  --rose-mid: #E8B4BE;
-  --moss:     #8FA260;
-  --moss-lt:  #B5C98A;
-  --cream:    #1A1714;
-  --surface:  #232120;
-  --fg:       #EFE9E5;
-  --fg-muted: #A89D97;
-  --border:   rgba(143,162,96,.18);
-  --shadow:   rgba(0,0,0,.25);
-  color-scheme: dark;
-}
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -384,7 +355,7 @@ body {
 .card-price {
   font-family: var(--font-disp);
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--moss);
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -970,16 +941,7 @@ footer {
         <span class="logo-sub">Ropa &amp; Accesorios</span>
       </div>
     </a>
-    <!-- Barra de búsqueda (centro) -->
-    <div class="search-wrap">
-      <input
-        type="search"
-        class="search-input"
-        id="search-input"
-        placeholder="Buscar productos..."
-        autocomplete="off">
-    </div>
-
+  
     <!-- Carrito (derecha) -->
     <button class="cart-btn" id="cart-btn" onclick="openCart()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1012,6 +974,16 @@ footer {
     <h2 class="catalog-title">Catálogo</h2>
     <span class="catalog-count" id="catalog-count"></span>
   </div>
+    <!-- Barra de búsqueda (centro) -->
+    <div class="search-wrap">
+      <input
+        type="search"
+        class="search-input"
+        id="search-input"
+        placeholder="Buscar productos..."
+        autocomplete="off">
+    </div>
+
   <div class="catalog-grid" id="catalog-grid">
     <div class="loader-wrap">
       <div class="spinner"></div>
