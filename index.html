@@ -1213,11 +1213,13 @@ function renderProducts(searchQuery) {
   }
 
   grid.innerHTML = filtered.map(prod => {
+     grid.innerHTML = filtered.map(prod => {
     const imgSrc = prod.foto || placeholder(prod.categoria);
     const precio = fmtPrice(prod.precio);
     const msg = encodeURIComponent(
     `Hola! Me interesa: *${prod.nombre}*${prod.categoria ? ' — ' + prod.categoria : ''}${prod.orden ? ' (N.° ' + prod.orden + ')' : ''}. ¿Está disponible?`
   );
+       
     const waLink = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     const safeId = prod.id.replace(/[^a-zA-Z0-9-]/g, '-');
 
@@ -1360,16 +1362,12 @@ function renderCartPanel() {
 }
 
 /* ── Comprar ahora: WhatsApp ── */
-function buyNow() {
-  if (cart.length === 0) return;
-  const lines = cart.map(i => {
-    const p = i.precio ? fmtPrice(i.precio) : 'consultar precio';
-    const color = i.color ? ` | Color: ${i.color}` : '';
-    return `• ${i.nombre} (x${i.qty}) — ${p}`;
-  });
-  const text = `Hola! Me gustaría comprar los siguientes artículos de Cliv's Boutique:\n\n${lines.join('\n')}\n\n¿Están disponibles?`;
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
-}
+  grid.innerHTML = filtered.map(prod => {
+    const imgSrc = prod.foto || placeholder(prod.categoria);
+    const precio = fmtPrice(prod.precio);
+    const msg = encodeURIComponent(
+    `Hola! Me interesa: *${prod.nombre}*${prod.categoria ? ' — ' + prod.categoria : ''}${prod.orden ? ' (N.° ' + prod.orden + ')' : ''}. ¿Está disponible?`
+  );
 
 /* ── Modal de zoom de imagen ── */
 function openModal(src, alt) {
