@@ -928,13 +928,15 @@ footer {
 </style>
 
 <!-- HEADER -->
-<a href="#" class="logo">
-  <img src="logo.jpg" alt="Clivs-Pag" style="height: 48px;">
-  <div class="logo-text">
-    <span class="logo-name">Cliv's Boutique</span>
-    <span class="logo-sub">Ropa &amp; Accesorios</span>
-  </div>
-</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="logo.jpeg" alt="Clivs-Pag" style="height: 48px;">
+      <div class="logo-text">
+        <span class="logo-name">Cliv's Boutique</span>
+        <span class="logo-sub">Ropa &amp; Accesorios</span>
+      </div>
+    </a>
   
     <!-- Carrito (derecha) -->
     <button class="cart-btn" id="cart-btn" onclick="openCart()">
@@ -1079,7 +1081,7 @@ const WA_NUMBER     = '50683010338';
 const NOTION_URL    = `https://api.notion.com/v1/databases/${DATABASE_ID}/query`;
 const PROXY         = 'https://notion-proxy.vercel.app/api/notion';
 
-const CATEGORIES = ['Todos','Tops','Faldas','Camisas','Vestidos','Palazos','Shorts','Pijamas','Batas'];
+const CATEGORIES = ['Todos','Tops','Faldas','Camisas','Vestidos','Palazos','Shorts','Pijamas','Batas', 'Hombres'];
 
 let allProducts  = [];
 let activeFilter = 'Todos';
@@ -1212,7 +1214,6 @@ function renderProducts(searchQuery) {
     return;
   }
 
-  grid.innerHTML = filtered.map(prod => {
      grid.innerHTML = filtered.map(prod => {
     const imgSrc = prod.foto || placeholder(prod.categoria);
     const precio = fmtPrice(prod.precio);
@@ -1361,7 +1362,7 @@ function renderCartPanel() {
   if (footer) footer.hidden = false;
 }
 
-/* ── Comprar ahora: WhatsApp ── */
+
   /* — Comprar ahora: WhatsApp — */
 function buyNow() {
   if (cart.length === 0) return;
@@ -1374,13 +1375,6 @@ function buyNow() {
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
 }
   
-  grid.innerHTML = filtered.map(prod => {
-    const imgSrc = prod.foto || placeholder(prod.categoria);
-    const precio = fmtPrice(prod.precio);
-    const msg = encodeURIComponent(
-  `Hola! Me interesa: *${prod.nombre}*${prod.categoria.length ? ' — ' + prod.categoria.join(', ') : ''}...`
-  );
-
 /* ── Modal de zoom de imagen ── */
 function openModal(src, alt) {
   const modal = document.getElementById('img-modal');
