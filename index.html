@@ -61,7 +61,7 @@ body {
   padding-block: 12px;
 }
 
-.logo {
+. {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -73,9 +73,11 @@ body {
   width: 46px;
   height: 46px;
   flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.logo-text { display: flex; flex-direction: column; gap: 1px; }
+.-text { display: flex; flex-direction: column; gap: 1px; }
 
 .logo-name {
   font-family: var(--font-disp);
@@ -931,7 +933,7 @@ footer {
 <header class="site-header">
   <div class="header-inner">
     <a href="#" class="logo">
-      <img src="logo.jpeg" alt="Clivs-Pag" style="height: 48px;">
+      <img src="logo.jpg" alt="Clivs-Pag" style="height: 48px; width: 48px; border-radius: 50%; object-fit: cover;">
       <div class="logo-text">
         <span class="logo-name">Cliv's Boutique</span>
         <span class="logo-sub">Ropa &amp; Accesorios</span>
@@ -1217,9 +1219,9 @@ function renderProducts(searchQuery) {
      grid.innerHTML = filtered.map(prod => {
     const imgSrc = prod.foto || placeholder(prod.categoria);
     const precio = fmtPrice(prod.precio);
-    const msg = encodeURIComponent(
-    `Hola! Me interesa: *${prod.nombre}*${prod.categoria ? ' — ' + prod.categoria : ''}${prod.orden ? ' (N.° ' + prod.orden + ')' : ''}. ¿Está disponible?`
-  );
+   const msg = encodeURIComponent(
+  `🛍️ Hola! Vi este artículo en Cliv's Boutique y me interesa:\n\n• *${prod.nombre}*${prod.categoria.length ? ' — ' + prod.categoria.join(', ') : ''}${prod.color ? '\n🎨 Color: ' + prod.color : ''}${prod.precio ? '\n💰 Precio: ' + fmtPrice(prod.precio) : ''}\n\n¿Está disponible?`
+);
        
     const waLink = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     const safeId = prod.id.replace(/[^a-zA-Z0-9-]/g, '-');
